@@ -50,6 +50,17 @@
 					// 응답이 완료되었고 정상처리됨.
 					let str = httpRequest.responseText;
 					console.log(str);
+					
+					// JSON 형식으로 작성된 문자열 데이터를
+					// JavaScript Object로 변환
+					let obj = JSON.parse(str);
+					console.log(obj);
+					let html = "<table border=1>";
+					html += "<tr><th>이름</th><th>나이</th></tr>";
+					
+					html += "<tr><th>이름</th><th>나이</th></tr>";
+					
+					html += "</table>";
 				}
 			}
 		}
