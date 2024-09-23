@@ -80,7 +80,7 @@
 			<td>주소</td>
 			<td>
 				<div>
-					<input type="text" readonly name="u_post" id="u_post" class="addr" placeholder="우편번호"/>
+					<input type="text" readonly name="u_addr_post" id="u_post" class="addr" placeholder="우편번호"/>
 					<input type="button" id="findAddr" value="주소찾기" />
 				</div>
 				<input type="text" readonly name="u_addr" id="u_addr" class="addr" placeholder="주소"/>
@@ -156,7 +156,7 @@
 		            // 입력필드에 값 넣기
 		            $("#u_post").val(postCode);
 		            $("#u_addr").val(fullAddr);
-		            #("#u_addr_detail").focus();
+		            $("#u_addr_detail").focus();
 		        }
 		    }).open();
 		});
@@ -189,3 +189,12 @@
 </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
