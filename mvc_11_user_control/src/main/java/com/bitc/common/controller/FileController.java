@@ -14,12 +14,25 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 
 	private final String uploadDir;
-
+	
+	
 	@GetMapping("displayFile")
-	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+	public ResponseEntity<byte[]> displayFile(
+				String fileName
+			) throws Exception{
 		System.out.println("displayFile : " + fileName);
-		return new ResponseEntity<>(FileUtils.getBytes(uploadDir, fileName), FileUtils.getHeaders(fileName),
+		return new ResponseEntity<>(
+				FileUtils.getBytes(uploadDir, fileName),
+				FileUtils.getHeaders(fileName),
 				HttpStatus.OK);
 	}
-
+	
 }
+
+
+
+
+
+
+
+

@@ -16,38 +16,42 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-
+	
 	private final UserService us;
-
+	
 	@GetMapping("/user/join")
 	public String join() {
 		return "user/join";
 	}
-
+	
 	@PostMapping("/user/joinPost")
-	public String joinPost(UserVO user, MultipartFile profileImage, RedirectAttributes rttr) throws Exception {
+	public String joinPost(
+				UserVO user,
+				MultipartFile profileImage,
+				RedirectAttributes rttr
+			) throws Exception{
 		System.out.println(profileImage);
-		boolean isEmpty = profileImage.isEmpty();
-		System.out.println(isEmpty);
 		System.out.println(user);
 		String message = us.userJoin(user, profileImage);
 		rttr.addFlashAttribute("msg", message);
 		return "redirect:/user/login";
 	}
-
+	
 	// 로그인 페이지 요청 처리
 	@GetMapping("/user/login")
 	public String login() {
 		return "user/login";
 	}
-
+	
 	@PostMapping("/user/login")
-	public String login(String u_id, String u_pw, boolean rememberme, HttpSession session) throws Exception {
+	public String login(
+			String u_id, String u_pw, boolean rememberme,
+			HttpSession session) throws Exception{
 		System.out.println(u_id);
 		System.out.println(u_pw);
 		System.out.println(rememberme);
 		UserVO user = us.login(u_id, u_pw);
-		session.setAttribute("userInfo", user);
+		session.setAttribute("userInfo",user);
 		return "redirect:/";
 	}
 	
@@ -56,4 +60,27 @@ public class UserController {
 		session.removeAttribute("userInfo");
 		return "redirect:/user/login";
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

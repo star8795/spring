@@ -20,15 +20,15 @@ public class UserServiceImpl implements UserService {
 	private final UserDAO dao;
 	
 	private final String uploadDir;
-		
-		@PostConstruct
-		public void init() {
-			File file = new File(uploadDir);
-			if(!file.exists()) {
-				file.mkdirs();
-			}
-			System.out.println("UserServiceImpl 초기화 완료");
+	
+	@PostConstruct
+	public void init() {
+		File file = new File(uploadDir);
+		if(!file.exists()) {
+			file.mkdirs();
 		}
+		System.out.println("UserServiceImpl 초기화 완료");
+	}
 
 	@Override
 	public String userJoin(UserVO user, MultipartFile profileImage) throws Exception {
@@ -48,8 +48,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVO getUserById(String u_id) throws Exception {
-		
-		return null;
+		return dao.getUserById(u_id);
 	}
 
 	@Override

@@ -1,3 +1,4 @@
+
 -- 테이블 이름 변경 spring_member => spring_user
 RENAME TABLE spring_member TO spring_user;
 
@@ -20,7 +21,22 @@ CREATE TABLE IF NOT EXISTS spring_user(
 	u_withdraw char(1) DEFAULT 'n'					-- 회원 탈퇴 여부(회원정보 숨김)   
 );
 
--- 주소 저장 컬럼 길이 확장, u_addr
+-- 주소 저장 column 길이 확장 , u_addr
 ALTER TABLE spring_user CHANGE COLUMN u_addr u_addr VARCHAR(200);
 
-DESC spring_member;
+DESC spring_user;
+
+SELECT * FROM spring_user;
+
+
+
+
+
+
+
+
+
+
+
+
+
