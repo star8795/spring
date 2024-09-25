@@ -49,7 +49,7 @@ public class MySessionEventListener implements HttpSessionListener, HttpSessionA
 				HttpSession ses = (HttpSession)enumeration.nextElement();
 				UserVO user = (UserVO)ses.getAttribute("userInfo");
 				// repository에 저장된 기존에 로그인한 사용자와
-				// 새로 로그인할려 사용자의 u_id값 비교
+				// 새로 로그인하려는 사용자의 u_id값 비교
 				if(user != null && user.getU_id().equals(newUser.getU_id())) {
 					// 중복 로그인 사용자
 					// ses.removeAttribute("userInfo");

@@ -37,9 +37,10 @@
 		<beans:constructor-arg value="C:\\Temp\\upload"/>	
 	</beans:bean>
 	
+	<!-- mvc 태그 -->			
+	<!-- 
 	<beans:bean id="testInterceptor" 
 				class="com.bitc.common.interceptor.TestInterceptor"/>
-	<!-- mvc 태그 -->			
 	<interceptors>
 		
 		<interceptor>
@@ -50,7 +51,7 @@
 		</interceptor>
 	
 	</interceptors>			
-	
+	 -->
 </beans:beans>
 
 

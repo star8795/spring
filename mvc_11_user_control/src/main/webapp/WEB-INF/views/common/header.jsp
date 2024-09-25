@@ -45,9 +45,11 @@
 					<img class="profile" src="${path}/resources/img/profile.jpg"/>
 				</c:if>
 				${userInfo.u_name}님 방가. 
-				<a href="${path}/user/logout">로그아웃</a>
+				<a href="${path}/user/logout">로그아웃</a> | 
+				<a href="${path}/userChat">user chat</a>
 			</c:otherwise>
 		</c:choose>
+		 | <a href="${path}/chat">CHAT</a>
 	</header>
 	
 	
