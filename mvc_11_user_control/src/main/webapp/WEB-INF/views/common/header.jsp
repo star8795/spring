@@ -49,7 +49,9 @@
 				<a href="${path}/userChat">user chat</a>
 			</c:otherwise>
 		</c:choose>
-		 | <a href="${path}/chat">CHAT</a>
+	 | <a href="${path}/chat">CHAT</a>
+	 | <a href="${path}/board/list">게시판</a>
+	 | <a href="${path}/checkEmail">CheckEmail</a>
 	</header>
 	
 	
