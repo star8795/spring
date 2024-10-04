@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("board/")
 @RequiredArgsConstructor
 public class BoardController {
-	
+
 	private final BoardService bs;
 
 	/* "게시글 작성 페이지 요청" */
@@ -37,21 +37,20 @@ public class BoardController {
 
 	/**
 	 * 게시글 등록 요청 처리 추가
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@PostMapping("register")
-	public String register(
-					BoardVO board
-					// ,HttpServletRequest request
-					// , Model model
-					,HttpSession session
-				) throws Exception {
+	public String register(BoardVO board
+	// ,HttpServletRequest request
+	// , Model model
+			, HttpSession session) throws Exception {
 		/*
-		request.setCharacterEncoding("UTF-8");
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content")); 
-		board.setWriter(request.getParameter("writer"));
-		*/
+		 * request.setCharacterEncoding("UTF-8");
+		 * board.setTitle(request.getParameter("title"));
+		 * board.setContent(request.getParameter("content"));
+		 * board.setWriter(request.getParameter("writer"));
+		 */
 		System.out.println(board);
 		String message = bs.regist(board);
 		System.out.println(message);
@@ -64,21 +63,19 @@ public class BoardController {
 	 */
 	// board/readPage - 조회수 증가
 	@GetMapping("readPage")
-	public String readPage(
-			int bno // 상세보기 요청한 게시글 번호 
-			, 
-			// 리디렉션 으로 화면 전환시 파라미터 또는 속성 값을 전달하는 객체 
-			RedirectAttributes rttr 
-			) throws Exception{
+	public String readPage(int bno // 상세보기 요청한 게시글 번호
+			,
+			// 리디렉션 으로 화면 전환시 파라미터 또는 속성 값을 전달하는 객체
+			RedirectAttributes rttr) throws Exception {
 		bs.updateCnt(bno);
-		rttr.addAttribute("bno",bno);
+		rttr.addAttribute("bno", bno);
 		// return "redirect:/board/read?bno="+bno;
 		return "redirect:/board/read";
 	}
-	
+
 	// - 상세보기 페이지 출력
 	@GetMapping("read")
-	public String read(int bno, Model model)throws Exception{
+	public String read(int bno, Model model) throws Exception {
 		BoardVO vo = bs.read(bno);
 		model.addAttribute(vo);// boardVO
 		return "board/read";
@@ -89,7 +86,7 @@ public class BoardController {
 	 */
 	// board/modify
 	@GetMapping("modify")
-	public String modify(int bno, Model model) throws Exception{
+	public String modify(int bno, Model model) throws Exception {
 		BoardVO vo = bs.read(bno);
 		model.addAttribute(vo);
 		return "board/modify";
@@ -99,10 +96,10 @@ public class BoardController {
 	 * 게시글 수정 처리 요청 게시글 수정 완료 후 redirect - 수정게시글 상세보기 페이지 이동
 	 */
 	@PostMapping("modify")
-	public String modify(BoardVO vo,RedirectAttributes rttr) throws Exception{
+	public String modify(BoardVO vo, RedirectAttributes rttr) throws Exception {
 		String result = bs.modify(vo);
 		rttr.addAttribute("bno", vo.getBno());
-		rttr.addFlashAttribute("result",result);
+		rttr.addFlashAttribute("result", result);
 		return "redirect:/board/read";
 	}
 
@@ -110,9 +107,9 @@ public class BoardController {
 	 * 게시글 삭제 완료 후 listPage 페이지 로 이동 - redirect
 	 */
 	@GetMapping("remove")
-	public String remove(int bno, RedirectAttributes rttr) throws Exception{
+	public String remove(int bno, RedirectAttributes rttr) throws Exception {
 		String msg = bs.remove(bno);
-		rttr.addFlashAttribute("msg",msg);
+		rttr.addFlashAttribute("msg", msg);
 		return "redirect:/board/listPage";
 	}
 
@@ -122,35 +119,17 @@ public class BoardController {
 	// GET : board/listPage
 	@GetMapping("listPage")
 	// 사용자가 요청한 페이지 번호에 따라서 페이징 처리된 리스트 출력
-	public void listPage(
-				Criteria cri, Model model,
-				HttpSession session
-				) throws Exception{
+	public void listPage(Criteria cri, Model model, HttpSession session) throws Exception {
 		// WEB-INF/views/board/listPage.jsp
 		List<BoardVO> list = bs.listCriteria(cri);
 		PageMaker pm = bs.getPageMaker(cri);
 		model.addAttribute("list", list);
 		model.addAttribute("pm", pm);
-		String msg = (String)session.getAttribute("msg");
-		if(msg != null) {
+		String msg = (String) session.getAttribute("msg");
+		if (msg != null) {
 			model.addAttribute("msg", msg);
 			session.removeAttribute("msg");
 		}
 	}
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
